@@ -284,20 +284,19 @@ export class CanvasRenderer extends Renderer {
             );
             this.ctx.save();
             this.ctx.clip();
+            const sx = dest.width / src.width;
+            const sy = dest.height / src.height;
             this.ctx.translate(
-                box.left + dest.left,
-                box.top + dest.top
+                box.left + dest.left - src.left * sx,
+                box.top + dest.top - src.top * sy,
             );
-            this.ctx.scale(
-                dest.width / src.width,
-                dest.height / src.height
-            );
+            this.ctx.scale(sx, sy);
             this.ctx.drawImage(
                 image,
                 0,
                 0,
-                src.width,
-                src.height
+                container.intrinsicWidth,
+                container.intrinsicHeight
             );
             this.ctx.restore();
         }
