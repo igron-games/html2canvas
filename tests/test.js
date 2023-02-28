@@ -36,7 +36,7 @@ var REFTEST = window.location.search.indexOf('reftest') !== -1;
                     timeoutTimer = false,
                     timer = date.getTime();
                 options = options || {};
-                var promise = html2canvas(this[0], options);
+                var promise = window['@igron-games/html2canvas'](this[0], options);
                 promise['catch'](function(err) {
                     console.log('html2canvas threw an error', err);
                 });
